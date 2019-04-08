@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default {
   path() {
-    const path = 'https://strapi.stark.wiki';
+    const path = 'http://strapi.stark.wiki:4000';
     return path;
   },
   get(pageName, parm) {

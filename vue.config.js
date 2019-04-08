@@ -18,9 +18,9 @@ module.exports = {
     //   key: fs.readFileSync("./path/server.key"),
     //   cert: fs.readFileSync("./path/ca.crt"),
     // },
-    https: true,
+    https: false,
     disableHostCheck: true,
-    port: 443,
+    port: 80,
     // proxy: 'https://zy.stark.wiki/'
   }
 }

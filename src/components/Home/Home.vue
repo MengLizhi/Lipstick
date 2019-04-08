@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import wx from 'weixin-js-sdk'
+
 export default {
   name: 'Home',
   data() {
@@ -35,8 +37,41 @@ export default {
     back() {
       this.show = false
     },
+    wxConfig(){
+      wx.config({
+          debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: '', // 必填，公众号的唯一标识
+          timestamp: '', // 必填，生成签名的时间戳
+          nonceStr: '', // 必填，生成签名的随机串
+          signature: '',// 必填，签名
+          jsApiList: [] // 必填，需要使用的JS接口列表
+      });
+    },
+    camera() {
+      console.log("相机")
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['camera'],
+        success: function (res) {
+          var localIds = res.localIds; //localIds可以作为img标签的src属性显示图片
+        }
+      })
+    },
+    album() {
+      console.log("本地相册")
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['ablum'],
+        success: function (res) {
+          var localIds = res.localIds; //localIds可以作为img标签的src属性显示图片
+        }
+      })
+    },
     async _getUserinfo() {
       let _userinfo = await this.$API.userinfo({code: this.userinfo.code})
+      console.log(_userinfo);
       this.userinfo.info = _userinfo.data;
     },
     async _login() {
@@ -46,7 +81,7 @@ export default {
         this.userinfo.code = _code
         this._getUserinfo();
       } else {
-        let _test = await this.$API.login({redirect_url: 'https://zy.stark.wiki'});
+        let _test = await this.$API.login({redirect_url: 'http://zy.stark.wiki'});
         let _url = '';
         console.log(_test);
         _test.forEach(item => {
