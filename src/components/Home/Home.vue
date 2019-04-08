@@ -1,15 +1,15 @@
 <template>
 <div class="home-wrapper">
   <div class="header-wrapper">
-    <img class="header" src="./assets/标题@2x.png" alt="">
-    <img class="body" src="./assets/测一测@2x.png" alt="">
-    <img @click="showBtn" class="button" src="./assets/按钮@2x.png" alt="">
+    <img class="header" src="./assets/homeTitle@2x.png" alt="">
+    <img class="body" src="./assets/test@2x.png" alt="">
+    <img @click="showBtn" class="button" src="./assets/homeButton@2x.png" alt="">
     <div class="home-sticky" v-show="show">
       <div class="photo">
-        <img style="width:25%;height:15%; margin-top: 10%" src="./assets/相机@2x.png" alt="">
-        <img class="icon" src="./assets/拍照@2x.png" alt="">
-        <img class="icon" src="./assets/手机选@2x.png" alt="">
-        <img @click="back" class="icon" src="./assets/取消@2x.png" alt="">
+        <img style="width:25%;height:15%; margin-top: 10%" src="./assets/camera@2x.png" alt="">
+        <img class="icon" src="./assets/photograph@2x.png" alt="">
+        <img class="icon" src="./assets/phoneSelection@2x.png" alt="">
+        <img @click="back" class="icon" src="./assets/cancel@2x.png" alt="">
       </div>
     </div>
   </div>
@@ -21,7 +21,11 @@ export default {
   name: 'Home',
   data() {
     return {
-      show: false
+      show: false,
+      userinfo: {
+        code: '',
+        info: {},
+      },
     }
   },
   methods: {
@@ -30,10 +34,30 @@ export default {
     },
     back() {
       this.show = false
+    },
+    async _getUserinfo() {
+      let _userinfo = await this.$API.userinfo({code: this.userinfo.code})
+      this.userinfo.info = _userinfo.data;
+    },
+    async _login() {
+      let loginCode = window.location.search;
+      if(loginCode.length > 0){
+        let _code = loginCode.substring(6,38)
+        this.userinfo.code = _code
+        this._getUserinfo();
+      } else {
+        let _test = await this.$API.login({redirect_url: 'https://zy.stark.wiki'});
+        let _url = '';
+        console.log(_test);
+        _test.forEach(item => {
+          _url = _url + item;
+        });
+        window.location = _url;
+      }
     }
   },
   created () {
-    this.$API.projectList();
+    this._login();
   }
 }
 </script>
@@ -41,7 +65,7 @@ export default {
 <style lang="stylus" scoped>
 .home-wrapper
   position: absolute
-  background-image: url("assets/背景@2x.png")
+  background-image: url("assets/homeBackground@2x.png")
   background-size: 100% 100%
   top:0
   right: 0

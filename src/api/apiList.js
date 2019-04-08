@@ -3,7 +3,10 @@ import api from '@/api/api';
 
 
 export default {
-  projectList(parameter) {
-    return api.get(`photo`, parameter);
+  login(parameter) {
+    return api.get(`login/`, parameter);
+  },
+  userinfo(parameter) {
+    return api.get(`userinfo/`, parameter);
   },
 };

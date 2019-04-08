@@ -2,11 +2,11 @@
   <div class="wrapper">
     <img class="header" :src="require(`./assets/${header}@2x.png`)" alt="">
     <div class="center">
-      <img class="background" src="./assets/二维码@2x.png" alt="">  
+      <img class="background" src="./assets/resultQR@2x.png" alt="">
         <img class="body" :src="require(`./assets/${img}@2x.png`)" alt="">
     </div>
     <div class="sticky" v-show="show">
-      <img @click="showTips" class="tips" src="./assets/提示@2x.png" alt="">
+      <img @click="showTips" class="tips" src="./assets/prompt@2x.png" alt="">
     </div>
   </div>
 </template>
@@ -16,8 +16,8 @@ export default {
   name: 'Result',
   data() {
     return {
-      header: "头部",
-      img: "模特",
+      header: "resultHead",
+      img: "resultModel",
       show: true
     }
   },
@@ -36,7 +36,7 @@ export default {
   right: 0
   left: 0
   bottom: 0
-  background-image: url("./assets/背景@2x.png")
+  background-image: url("./assets/resultBackground@2x.png")
   background-repeat: no-repeat
   background-size: 100% 100%
   .header

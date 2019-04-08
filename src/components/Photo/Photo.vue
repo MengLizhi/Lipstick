@@ -13,7 +13,7 @@ export default {
 <style lang="stylus" scoped>
 .wrapper
   position: absolute
-  background-image: url("./assets/背景@2x.png")
+  background-image: url("./assets/photoBackground@2x.png")
   background-size: 100% 100%
   top: 0
   right: 0

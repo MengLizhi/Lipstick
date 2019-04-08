@@ -13,7 +13,7 @@
               </div>
               <span>{{name}}</span>
             </div>
-            <div class="header-top-subtitle">测颜：</div>
+            <div class="header-top-subtitle">测颜：{{test}}</div>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
     <div class="body">
       <img class="title" :src="require(`./assets/${title}@2x.png`)" alt="">
       <img class="model" :src="require(`./assets/${model}@2x.png`)" alt="">
-      <img class="button" src="./assets/按钮@2x.png" alt="">
+      <img class="button" src="./assets/skinButton@2x.png" alt="">
     </div>
   </div>
 </template>
@@ -61,10 +61,10 @@ export default {
   name: 'Skin',
   data() {
     return {
-      title: "模特1标题",
-      model: "模特1",
+      title: "skinTitle",
+      model: "skinModel",
       name: '丸子胡了',
-      test: '测颜:女丸子的神奇墨镜/ 美颜指数:98',
+      test: '女丸子的神奇墨镜/ 美颜指数:98',
       skinAnalysis: '色素性皮肤',
       skinColor: '白皙',
       skinAge: '白皙',
@@ -131,12 +131,12 @@ export default {
 .wrapper
   width 100vw
   height 100vh
-  background-image: url("./assets/背景@2x.png")
+  background-image: url("./assets/skinBackground@2x.png")
   background-size: 100% 100%
   background-repeat: no-repeat
   align-items: center;
   .body
-    background: url("./assets/二维码@2x.png")
+    background: url("./assets/skinQR@2x.png")
     background-size: 100% 100%
     background-repeat: no-repeat
     width: 92%
